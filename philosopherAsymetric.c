@@ -18,7 +18,7 @@ void* philosopher(void* argument)
         //kazdy z filozofow zaczyna jesc w roznych momentach
         sleep = rand() % 145678;
         usleep(sleep);
-        pthread_mutex_lock(&threads[leftFork]);
+        pthread_mutex_lock(&forks[leftFork]);
         printf("%d podniosl lewy widelec (%d) i wciaz mysli\n", leftFork, leftFork);
         pthread_mutex_lock(&forks[rightFork]);
         printf("%d podniosl prawy widelec (%d), konczy myslec i zaczyna jesc\n", leftFork, rightFork);
@@ -42,7 +42,7 @@ void* philosopher_asymetric(void* argument)
         //kazdy z filozofow zaczyna jesc w roznych momentach
         sleep = rand() % 145678;
         usleep(sleep);
-        pthread_mutex_lock(&threads[rightFork]);
+        pthread_mutex_lock(&forks[rightFork]);
         printf("%d podnosi prawy widelec i mysli\n", leftFork);
         pthread_mutex_lock(&forks[leftFork]);
         printf("%d podnosi lewy widelec i juz nie mysli i je\n", leftFork);
