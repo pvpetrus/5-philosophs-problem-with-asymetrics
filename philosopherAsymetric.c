@@ -59,7 +59,7 @@ void* philosopher_asymetric(void* argument)
 int main()
 {
 
-    openlog("filozofowie", LOG_PID);
+    openlog("filozofowie", LOG_PID,LOG_DAEMON);
     pthread_t threads[5];
     int i;
     for(i=0;i<4;i++)
