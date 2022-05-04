@@ -2,7 +2,7 @@
 #include <pthread.h>
 #include <unistd.h>
 #include <stdlib.h>
-
+#include <syslog.h>
 //problem dotyczacy 5 filozofow jedzacych 5 dan 5 widelcami
 //filozofowie usadzeni sa przy okraglym stole
 //kazdy z filozofow je 2 widelcami jednoczesnie inaczej czeka
