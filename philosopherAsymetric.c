@@ -19,16 +19,16 @@ void* philosopher(void* argument)
         sleep = rand() % 145678;
         usleep(sleep);
         pthread_mutex_lock(&forks[leftFork]);
-        printf("%d podnosi lewy widelec i mysli\n", leftFork);
+        syslog(LOG_NOTICE,"%d podnosi lewy widelec i mysli\n", leftFork);
         pthread_mutex_lock(&forks[rightFork]);
-        printf("%d podnosi prawy widelec i je\n", leftFork);
+        syslog(LOG_NOTICE,"%d podnosi prawy widelec i je\n", leftFork);
         sleep = rand() % 1456789;
         //kazdy z filozofow konczy jesc w roznych momentach
         usleep(sleep);
         pthread_mutex_unlock(&forks[leftFork]);
-        printf("%d konczy jesc i  myslei\n", leftFork);
+        syslog(LOG_NOTICE,"%d konczy jesc i  mysli\n", leftFork);
         pthread_mutex_unlock(&forks[rightFork]);
-        printf("%d polozyl prawy widelec\n", leftFork);
+        syslog(LOG_NOTICE,"%d polozyl prawy widelec\n", leftFork);
     }
     return NULL;
 }
@@ -43,21 +43,23 @@ void* philosopher_asymetric(void* argument)
         sleep = rand() % 145678;
         usleep(sleep);
         pthread_mutex_lock(&forks[rightFork]);
-        printf("%d podnosi prawy widelec i mysli\n", leftFork);
+        syslog(LOG_NOTICE,"%d podnosi prawy widelec i mysli\n", leftFork);
         pthread_mutex_lock(&forks[leftFork]);
-        printf("%d podnosi lewy widelec i juz nie mysli i je\n", leftFork);
+        syslog(LOG_NOTICE,"%d podnosi lewy widelec i juz nie mysli i je\n", leftFork);
         sleep = rand() % 1456789;
         //kazdy z filozofow konczy jesc w roznych momentach
         usleep(sleep);
         pthread_mutex_unlock(&forks[rightFork]);
-        printf("%d konczy jesc i kladzie prawy widelec\n", leftFork);
+        syslog(LOG_NOTICE,"%d konczy jesc i kladzie prawy widelec\n", leftFork);
         pthread_mutex_unlock(&forks[leftFork]);
-        printf("%d kladzie lewy widelec\n", leftFork);
+        syslog(LOG_NOTICE,"%d kladzie lewy widelec\n", leftFork);
     }
     return NULL;
 }
 int main()
 {
+
+    openlog("filozofowie", LOG_PID);
     pthread_t threads[5];
     int i;
     for(i=0;i<4;i++)
