@@ -43,16 +43,16 @@ void* philosopher_asymetric(void* argument)
         sleep = rand() % 145678;
         usleep(sleep);
         pthread_mutex_lock(&threads[rightFork]);
-        printf("%d podniosl lewy widelec (%d) i wciaz mysli\n", leftFork, leftFork);
+        printf("%d podnosi prawy widelec i mysli\n", leftFork);
         pthread_mutex_lock(&forks[leftFork]);
-        printf("%d podniosl prawy widelec (%d), konczy myslec i zaczyna jesc\n", leftFork, rightFork);
+        printf("%d podnosi lewy widelec i juz nie mysli i je\n", leftFork);
         sleep = rand() % 1456789;
         //kazdy z filozofow konczy jesc w roznych momentach
         usleep(sleep);
         pthread_mutex_unlock(&forks[rightFork]);
-        printf("%d konczy jesc i zaczyna myslec\n", leftFork);
+        printf("%d konczy jesc i kladzie prawy widelec\n", leftFork);
         pthread_mutex_unlock(&forks[leftFork]);
-        printf("%d polozyl prawy widelec (%d) i wciaz mysli\n", leftFork, rightFork);
+        printf("%d kladzie lewy widelec\n", leftFork);
     }
     return NULL;
 }
