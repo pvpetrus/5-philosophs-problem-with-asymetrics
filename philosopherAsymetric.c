@@ -13,8 +13,6 @@ void* philosopher(void* argument)
     int leftFork = *(int*) argument;
     int rightFork = (leftFork+1) % 5;
     int sleep;
-    while(1==1)
-    {
         //kazdy z filozofow zaczyna jesc w roznych momentach
         sleep = rand() % 145678;
         usleep(sleep);
@@ -29,7 +27,7 @@ void* philosopher(void* argument)
         syslog(LOG_NOTICE,"%d konczy jesc i  mysli\n", leftFork);
         pthread_mutex_unlock(&forks[rightFork]);
         syslog(LOG_NOTICE,"%d polozyl prawy widelec\n", leftFork);
-    }
+    
     return NULL;
 }
 void* philosopher_asymetric(void* argument)
@@ -37,8 +35,6 @@ void* philosopher_asymetric(void* argument)
     int leftFork = *(int*) argument;
     int rightFork = (leftFork+1) % 5;
     int sleep;
-    while(1==1)
-    {
         //kazdy z filozofow zaczyna jesc w roznych momentach
         sleep = rand() % 145678;
         usleep(sleep);
@@ -53,7 +49,6 @@ void* philosopher_asymetric(void* argument)
         syslog(LOG_NOTICE,"%d konczy jesc i kladzie prawy widelec\n", leftFork);
         pthread_mutex_unlock(&forks[leftFork]);
         syslog(LOG_NOTICE,"%d kladzie lewy widelec\n", leftFork);
-    }
     return NULL;
 }
 int main()
